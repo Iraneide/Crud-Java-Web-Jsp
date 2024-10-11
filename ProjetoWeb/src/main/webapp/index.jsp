@@ -47,9 +47,12 @@
             <%
             String usuario = request.getParameter("txtusuario");
             String senha = request.getParameter("txtsenha");
-             if(usuario == "" || senha == "") {
-            	 out.println("Preencha os Dados");
-             }                 		
+             if(usuario.equals("Iraneide") && senha.equals("123")) {
+            	 response.sendRedirect("usuarios.jsp");
+             } else{
+            	 out.println("Dados Incorretos");
+            	 
+             }                		
             %>
             </p>
         </div>
