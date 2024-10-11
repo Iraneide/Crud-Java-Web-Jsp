@@ -43,18 +43,7 @@
                     </div>
                 </div>
             </div>
-            <p align="center" class="text-light mt-2">
-            <%
-            String usuario = request.getParameter("txtusuario");
-            String senha = request.getParameter("txtsenha");
-             if(usuario.equals("Iraneide") && senha.equals("123")) {
-            	 response.sendRedirect("usuarios.jsp");
-             } else{
-            	 out.println("Dados Incorretos");
-            	 
-             }                		
-            %>
-            </p>
+            
         </div>
     </div>
 </body>
