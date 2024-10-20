@@ -4,6 +4,9 @@
     Author     : Iraneide Cândido da Silva
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection "%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -29,6 +32,12 @@
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="CSS/estyle.css" rel="stylesheet">
 <!------ Include the above in your HEAD tag ---------->
+
+<%
+Connection con = null;
+Statement st = null;
+ResultSet rs= null;
+%>
 </head>
 <body>
 
@@ -66,6 +75,7 @@
 							<%
 							String usuario = request.getParameter("txtusuario");
 							String senha = request.getParameter("txtsenha");
+										
 							if (usuario == null || senha == null){
 
 								out.println("Preencha os Dados");
