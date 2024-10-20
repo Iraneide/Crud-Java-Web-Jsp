@@ -4,6 +4,7 @@
     Author     : Iraneide Cândido da Silva
 --%>
 
+<%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection "%>
@@ -73,6 +74,13 @@ ResultSet rs= null;
 
 						<p class="text-muted mt-2">
 							<%
+							
+							con = DriverManager.getConnection("jdbc:mysql://localhost/javaweb?user=root&password=");
+							st =con.createStatement();
+							rs = st.executeQuery("");
+							
+							
+							
 							String usuario = request.getParameter("txtusuario");
 							String senha = request.getParameter("txtsenha");
 										
