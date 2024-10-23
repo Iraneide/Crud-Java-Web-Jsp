@@ -8,7 +8,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.* "%>
-
+<%@page import="com.mysql.jdbc.Driver"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -80,14 +80,18 @@ ResultSet rs= null;
 							String usuario = request.getParameter("txtusuario");
 							String senha = request.getParameter("txtsenha");
 										
+							String user = "", pass = "";			
+										
 										try{
-											Class.forName("com.mysql.cj.jbdc.Driver");			
-											
-											con = DriverManager.getConnection("jdbc:mysql://localhost/javaweb?userTimezone=true&serverTimezone=UTC&user=root&password=");
+													
+											Class.forName("com.mysql.jdbc.Driver");
+											con = DriverManager.getConnection("jdbc:mysql://localhost/javaweb?user=root&password=");
 											st =con.createStatement();
 											rs = st.executeQuery("SELECT * FROM usuarios ");
+											
 											while(rs.next()){
-												out.println(rs.getString(2));
+												user = (rs.getString(3));
+												pass = (rs.getString(4));
 											}
 											
 										}catch(Exception e){
@@ -101,11 +105,11 @@ ResultSet rs= null;
 
 								out.println("Preencha os Dados");
 							}else {
-								if(usuario.equals("Iraneide") && senha.equals("123")){
+								if(usuario.equals(user) && senha.equals(pass)){
 									response.sendRedirect("usuarios.jsp");
 									
 								}else{
-									out.println("Preencha os Dados");
+									out.println("Dados Incorretos");
 								}
 							}
 							
