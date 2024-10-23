@@ -8,6 +8,8 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection "%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -75,14 +77,25 @@ ResultSet rs= null;
 						<p class="text-muted mt-2">
 							<%
 							
-							con = DriverManager.getConnection("jdbc:mysql://localhost/javaweb?user=root&password=");
-							st =con.createStatement();
-							rs = st.executeQuery("");
-							
-							
-							
 							String usuario = request.getParameter("txtusuario");
 							String senha = request.getParameter("txtsenha");
+										
+										try{
+											Class.forName("com.mysql.cj.jbdc.Driver");			
+											
+											con = DriverManager.getConnection("jdbc:mysql://localhost/javaweb?userTimezone=true&serverTimezone=UTC&user=root&password=");
+											st =con.createStatement();
+											rs = st.executeQuery("SELECT * FROM usuarios ");
+											while(rs.next()){
+												out.println(rs.getString(2));
+											}
+											
+										}catch(Exception e){
+											out.print(e);
+											
+										}
+										
+								
 										
 							if (usuario == null || senha == null){
 
