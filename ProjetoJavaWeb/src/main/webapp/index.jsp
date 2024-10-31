@@ -56,12 +56,12 @@ ResultSet rs= null;
 							<div class="form-group">
 								<label for="username" class="text-info">Usuario</label><br>
 								<input type="text" name="txtusuario" id="txtusuario"
-									class="form-control" required >
+									class="form-control"  >
 							</div>
 							<div class="form-group">
 								<label for="password" class="text-info">Senha:</label><br>
 								<input type="text" name="txtsenha" id="txtsenha"
-									class="form-control" required>
+									class="form-control" >
 							</div>
 							<div class="form-group">
 								<label for="remember-me" class="text-info"><span>Lembrar-me</span> <span><input
@@ -74,51 +74,19 @@ ResultSet rs= null;
 							</div>
 						</form>
 
-						<p class="text-muted mt-2">
+						<p align="center" class="text-light mt-5">
 							<%
-							
 							String usuario = request.getParameter("txtusuario");
-							String senha = request.getParameter("txtsenha");
-										
-							String user = "", pass = "";
-							int i = 0;
-										
-										try{
-													
-											Class.forName("com.mysql.jdbc.Driver");
-											con = DriverManager.getConnection("jdbc:mysql://localhost/javaweb?user=root&password=");
-											st =con.createStatement();
-											rs = st.executeQuery("SELECT * FROM usuarios where usuario = '" +usuario+"' and senha = '"+senha+"'");
-											
-											while(rs.next()){
-												user = (rs.getString(3));
-												pass = (rs.getString(4));
-												out.print(user);
-												
-											}
-											
-											
-										}catch(Exception e){
-											out.print(e);
-											
-										}
-										
-								
-										
-							if (usuario == null || senha == null){
-
+							String senha = request.getParameter("txtsenha");			
+							if(usuario == "" || senha == ""){
 								out.println("Preencha os Dados");
-							}else {
-								if(usuario.equals(user) && senha.equals(pass)){
-									//response.sendRedirect("usuarios.jsp");
-									
-								}else{
-									out.println("Dados Incorretos");
-								}
+								
 							}
+
 							
 							%>
 						</p>
+
 					</div>
 				</div>
 			</div>
